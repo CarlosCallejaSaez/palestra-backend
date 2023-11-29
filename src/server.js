@@ -2,9 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import cors from "cors";
-import multer from 'multer';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
-import { v2 as cloudinary } from 'cloudinary';
+
 
 
 import userRouter from "./routers/user.router.js";
@@ -23,7 +21,7 @@ app.use(cors());
 
 app.use("/api/users", userRouter);
 app.use("/api/exercises", exerciseRouter);
-app.use("api/classes",classRouter)
+app.use("/api/classes",classRouter)
 
 app.get("*", (req, res) => {
   res.status(404).send("<h1>Page not found on the server</h1>");
