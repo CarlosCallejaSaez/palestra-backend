@@ -10,6 +10,9 @@ import { dbconnect } from "./config/database.config.js";
 import exerciseRouter from "./routers/exercise.router.js";
 import classRouter from "./routers/class.router.js";
 
+
+
+
 dbconnect();
 const app = express();
 
@@ -23,6 +26,10 @@ app.use("/api/users", userRouter);
 app.use("/api/exercises", exerciseRouter);
 app.use("/api/classes",classRouter)
 
+
+
+
+
 app.get("*", (req, res) => {
   res.status(404).send("<h1>Page not found on the server</h1>");
 });
@@ -31,3 +38,6 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);
 });
+
+
+export default app;
