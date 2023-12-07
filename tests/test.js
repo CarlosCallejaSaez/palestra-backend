@@ -20,6 +20,18 @@ describe("API Tests", () => {
         });
       });
 
+      describe("GET /api/users", () => {
+        it("should return 404", (done) => {
+          chai
+            .request(app)
+            .get("/api/users")
+            .end((err, res) => {
+              expect(res).to.have.status(404);
+              done();
+            });
+        });
+      });
+
       describe("GET /api/classes", () => {
         it("should return a list of classes", (done) => {
           chai
