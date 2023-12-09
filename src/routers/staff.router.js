@@ -73,11 +73,11 @@ router.delete("/:id", async (req, res) => {
   try {
     const staff = await Staff.findById(req.params.id);
 
-    await cloudinary.uploader.destroy(user.cloudinary_id);
+    await cloudinary.uploader.destroy(staff.cloudinary_id);
 
-    await staff.remove();
+    await staff.deleteOne({ _id: req.params.id });
 
-    res.json(user);
+    res.json(staff);
   } catch (err) {
     console.log(err);
   }
@@ -87,7 +87,7 @@ router.put("/:id", multerConfig.single("image"), async (req, res) => {
   try {
     const staff = await Staff.findById(req.params.id);
 
-    await cloudinary.uploader.destroy(user.cloudinary_id);
+    await cloudinary.uploader.destroy(staff.cloudinary_id);
 
     let result;
     if (req.file) {
@@ -95,9 +95,9 @@ router.put("/:id", multerConfig.single("image"), async (req, res) => {
     }
 
     const data = {
-      name: req.body.name || user.name,
-      avatar: result?.secure_url || user.avatar,
-      cloudinary_id: result?.public_id || user.cloudinary_id,
+      name: req.body.name || staff.name,
+      avatar: result?.secure_url || staff.avatar,
+      cloudinary_id: result?.public_id || staff.cloudinary_id,
     };
 
     const updatedStaff = await Staff.findByIdAndUpdate(req.params.id, data, {
