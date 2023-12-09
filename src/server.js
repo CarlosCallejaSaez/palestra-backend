@@ -9,6 +9,7 @@ import userRouter from "./routers/user.router.js";
 import { dbconnect } from "./config/database.config.js";
 import exerciseRouter from "./routers/exercise.router.js";
 import classRouter from "./routers/class.router.js";
+import staffRouter from "./routers/staff.router.js";
 
 
 
@@ -25,6 +26,7 @@ app.use(cors());
 app.use("/api/users", userRouter);
 app.use("/api/exercises", exerciseRouter);
 app.use("/api/classes",classRouter)
+app.use("/api/staff", staffRouter);
 
 
 
