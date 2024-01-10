@@ -8,6 +8,9 @@
     "start": "nodemon src/server.js",
     "test": "mocha tests"
   },
+  "engines": {
+    "node": "16"
+  },
   "author": "Carlos Calleja Saez",
   "license": "ISC",
   "dependencies": {
